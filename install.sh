@@ -2,6 +2,9 @@
 
 
 # get params
+echo "name_cam:"
+read name_cam
+
 echo "tg_token:"
 read tg_token
 
@@ -15,6 +18,7 @@ echo "netcam_highres:"
 read netcam_highres
 
 echo ""
+echo name_cam:$name_cam
 echo tg_token:$tg_token
 echo tg_id:$tg_id
 echo netcam_url:$netcam_url
@@ -32,12 +36,6 @@ echo "starting..."
 apt update && apt upgrade
 
 apt install imagemagick libjson-c-dev
-
-
-# install ivc-kolpak
-
-cp -r ~/camTg-notification/ivc-kolpak/ /etc/ivc-kolpak
-
 
 # build motion
 apt install autoconf automake autopoint build-essential pkgconf libtool libzip-dev libjpeg-dev git libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev libwebp-dev gettext libmicrohttpd-dev
@@ -63,16 +61,15 @@ rm -rf ./motion
 echo "ramdisk /mnt/ramdisk tmpfs rw,size=256M 0 0" >> /etc/fstab
 
 
+# install ivc-kolpak
+cp -r /camTg-notification/ivc-kolpak/ /etc/ivc-kolpak
+
 # copy bins
 chmod 700 /etc/ivc-kolpak/tgbot/
 ln -s /etc/ivc-kolpak/tgbot/* /usr/bin/
 
 chmod 700 /etc/ivc-kolpak/motion/
 ln -s /etc/ivc-kolpak/motion/motion.conf /usr/bin/
-
-chmod 700 /etc/ivc-kolpak/channels/
-
-ln -s /etc/ivc-kolpak/channels/camera1.conf /usr/bin/
 
 ln -s /etc/ivc-kolpak/bin/libtelebot.so.0.4.5 /lib/
 
@@ -84,11 +81,12 @@ chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottex
 chmod 700 /usr/bin/estgb
 
 # copy to configs
-echo $tg_token > /etc/ivc-kolpak/channels/camera1/.token
-echo $tg_id > /etc/ivc-kolpak/channels/camera1/.userid
+mkdir /etc/ivc-kolpak/channels/$name_cam
+echo $tg_token > /etc/ivc-kolpak/channels/$name_cam/.token
+echo $tg_id > /etc/ivc-kolpak/channels/$name_cam/.userid
 
 # да, я не нашёл ничего лучше, чем просто скопировать рабочий конфиг. sed-ом проходиться по нему страшно.
-cat > /etc/ivc-kolpak/channels/camera1.conf << EOF
+cat > /etc/ivc-kolpak/channels/$name_cam.conf << EOF
 ###########################################################
 # Configuration options specific to camera 1
 ############################################################
@@ -118,7 +116,7 @@ height 448
 framerate 25
 
 # Text to be overlayed in the lower left corner of images
-text_left IVC KOLPAK DEMO - MAIN 
+text_left $name_cam - MAIN 
 text_right %Y-%m-%d\n%T-%q
 
 output_pictures best
@@ -146,10 +144,14 @@ stream_port 49001
 stream_localhost off
 stream_maxrate 25
 
-on_picture_save tgbotpic.sh "status" "%f"
-on_movie_end tgbotvideo.sh "status" "%f" "\xF0\x9F\x95\x93 %H:%M:%S \xF0\x9F\x93\x85 %d.%m.%Y\n\xF0\x9F\x8E\x9E"
+on_picture_save tgbotpic.sh "$name_cam" "%f"
+on_movie_end tgbotvideo.sh "$name_cam" "%f" "\xF0\x9F\x95\x93 %H:%M:%S \xF0\x9F\x93\x85 %d.%m.%Y\n\xF0\x9F\x8E\x9E"
 #on_picture_save tgbot_mediapic.sh
 #on_event_end tgbot_mediapic.sh
-on_camera_lost tgbottext.sh "status" "Camera connection lost"
-on_camera_found tgbottext.sh "status" "Camera connetion established"
+on_camera_lost tgbottext.sh "$name_cam" "Camera connection lost"
+on_camera_found tgbottext.sh "$name_cam" "Camera connetion established"
 EOF
+
+chmod 700 /etc/ivc-kolpak/channels/
+
+ln -s /etc/ivc-kolpak/channels/$name_cam.conf /usr/bin/
