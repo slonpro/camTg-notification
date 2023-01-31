@@ -65,10 +65,20 @@ echo "ramdisk /mnt/ramdisk tmpfs rw,size=256M 0 0" >> /etc/fstab
 
 # copy bins
 chmod 700 /etc/ivc-kolpak/tgbot/
-ln -s /etc/ivc-kolpak/tgbot/* /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/stats.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbot.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbotaudio.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbotdoc.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbotpic.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbottext.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/tgbotvideo.sh /usr/bin/
 
 chmod 700 /etc/ivc-kolpak/motion/
-ln -s /etc/ivc-kolpak/motion/* /usr/bin/
+ln -s /etc/ivc-kolpak/motion/motion.conf /usr/bin/
+
+chmod 700 /etc/ivc-kolpak/channels/
+
+ln -s /etc/ivc-kolpak/channels/camera1.conf /usr/bin/
 
 ln -s /etc/ivc-kolpak/bin/telebot.so.0.4.5 /lib/
 
