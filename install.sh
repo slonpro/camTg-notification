@@ -65,13 +65,7 @@ echo "ramdisk /mnt/ramdisk tmpfs rw,size=256M 0 0" >> /etc/fstab
 
 # copy bins
 chmod 700 /etc/ivc-kolpak/tgbot/
-ln -s /etc/ivc-kolpak/tgbot/stats.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbot.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbotaudio.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbotdoc.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbotpic.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbottext.sh /usr/bin/
-ln -s /etc/ivc-kolpak/tgbot/tgbotvideo.sh /usr/bin/
+ln -s /etc/ivc-kolpak/tgbot/* /usr/bin/
 
 chmod 700 /etc/ivc-kolpak/motion/
 ln -s /etc/ivc-kolpak/motion/motion.conf /usr/bin/
@@ -80,12 +74,12 @@ chmod 700 /etc/ivc-kolpak/channels/
 
 ln -s /etc/ivc-kolpak/channels/camera1.conf /usr/bin/
 
-ln -s /etc/ivc-kolpak/bin/telebot.so.0.4.5 /lib/
+ln -s /etc/ivc-kolpak/bin/libtelebot.so.0.4.5 /lib/
 
 chmod 700 /etc/ivc-kolpak/bin/estgb
 ln -s /etc/ivc-kolpak/bin/estgb /usr/bin/estgb
 
-chmod 700 /bin/{auto_camera.sh,clear_history.sh,stats.sh,tgbot.sh,tgbot_mediapic.sh,tgbotpic.sh,tgbottext.sh,tgbotvideo.sh,video_processor.sh}
+chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottext.sh,tgbotvideo.sh}
 
 chmod 700 /usr/bin/estgb
 
