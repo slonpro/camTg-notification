@@ -80,6 +80,8 @@ chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottex
 
 chmod 700 /usr/bin/estgb
 
+chmod 700 /etc/ivc-kolpak/channels/
+
 # copy to configs
 mkdir /etc/ivc-kolpak/channels/$name_cam
 echo $tg_token > /etc/ivc-kolpak/channels/$name_cam/.token
@@ -154,6 +156,55 @@ on_camera_lost tgbottext.sh "$name_cam" "Camera connection lost"
 on_camera_found tgbottext.sh "$name_cam" "Camera connetion established"
 EOF
 
-chmod 700 /etc/ivc-kolpak/channels/
-
 ln -s /etc/ivc-kolpak/channels/$name_cam.conf /usr/bin/
+
+cat > /etc/ivc-kolpak/motion/motion.conf << EOF
+daemon off
+setup_mode off
+
+# Level of log messages [1..9] (EMG, ALR, CRT, ERR, WRN, NTC, INF, DBG, ALL).
+log_level 6
+
+############################################################
+# Motion detection configuration parameters
+############################################################
+
+# Always save pictures and movies even if there was no motion.
+emulate_motion off
+
+# Noise threshold for the motion detection.
+; noise_level 32
+
+# Despeckle the image using (E/e)rode or (D/d)ilate or (l)abel.
+despeckle_filter EedDl
+
+############################################################
+# Webcontrol configuration parameters
+############################################################
+
+# Port number used for the webcontrol.
+webcontrol_port 8080
+
+# Restrict webcontrol connections to the localhost.
+webcontrol_localhost on
+
+# Type of configuration options to allow via the webcontrol.
+webcontrol_parms 0
+
+############################################################
+# Live stream configuration parameters
+############################################################
+
+##############################################################
+# Camera config files - One for each camera.
+##############################################################
+camera /etc/ivc-kolpak/channels/$name_cam.conf
+;camera /etc/ivc-kolpak/channels/camera2.conf
+
+
+##############################################################
+# Directory to read '.conf' files for cameras.
+##############################################################
+; camera_dir /etc/motion/conf.d
+
+EOF
