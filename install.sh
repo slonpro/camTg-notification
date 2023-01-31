@@ -32,28 +32,28 @@ sleep 3
 echo "starting..."
 
 
-apt install imagemagick libjson-c-dev
+apt install imagemagick libjson-c-dev libjson-c4 motion
 
-# build motion
-apt install autoconf automake autopoint build-essential pkgconf libtool libzip-dev libjpeg-dev git libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev libwebp-dev gettext libmicrohttpd-dev
+## build motion
+#apt install autoconf automake autopoint build-essential pkgconf libtool libzip-dev libjpeg-dev git libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev libwebp-dev gettext libmicrohttpd-dev
 
-cd ~
+#cd ~
 
-git clone https://github.com/Motion-Project/motion.git
+#git clone https://github.com/Motion-Project/motion.git
 
-cd motion
+#cd motion
 
-autoreconf -fiv
+#autoreconf -fiv
 
-./configure
+#./configure
 
-make
+#make
 
-make install
+#make install
 
-cd ~
+#cd ~
 
-rm -rf ./motion
+#rm -rf ./motion
 
 echo "ramdisk /mnt/ramdisk tmpfs rw,size=256M 0 0" >> /etc/fstab
 
