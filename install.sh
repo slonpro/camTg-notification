@@ -84,6 +84,8 @@ chmod 700 /usr/bin/estgb
 mkdir /etc/ivc-kolpak/channels/$name_cam
 echo $tg_token > /etc/ivc-kolpak/channels/$name_cam/.token
 echo $tg_id > /etc/ivc-kolpak/channels/$name_cam/.userid
+chmod 700 /etc/ivc-kolpak/channels/$name_cam/.userid
+chmod 700 /etc/ivc-kolpak/channels/$name_cam/.token
 
 # да, я не нашёл ничего лучше, чем просто скопировать рабочий конфиг. sed-ом проходиться по нему страшно.
 cat > /etc/ivc-kolpak/channels/$name_cam.conf << EOF
