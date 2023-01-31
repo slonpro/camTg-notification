@@ -25,7 +25,7 @@ echo netcam_url:$netcam_url
 echo netcam_highres:$netcam_highres
 
 echo ""
-echo "Exit if data is incorrect (ctrl + c). Install starts in 15 seconds"
+echo "Exit if data is incorrect (ctrl + c). Install starts in 10 seconds"
 sleep 7
 echo "3 seconds"
 sleep 3
