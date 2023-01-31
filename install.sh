@@ -32,9 +32,6 @@ sleep 5
 echo "starting..."
 
 
-# update
-apt update && apt upgrade
-
 apt install imagemagick libjson-c-dev
 
 # build motion
