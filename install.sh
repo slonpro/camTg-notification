@@ -77,6 +77,7 @@ chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottex
 
 chmod 700 /usr/bin/estgb
 
+mkdir /etc/ivc-kolpak/channels
 chmod 700 /etc/ivc-kolpak/channels/
 
 # copy to configs
