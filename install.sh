@@ -26,9 +26,9 @@ echo netcam_highres:$netcam_highres
 
 echo ""
 echo "Exit if data is incorrect (ctrl + c). Install starts in 15 seconds"
-sleep 10
-echo "5 seconds"
-sleep 5
+sleep 7
+echo "3 seconds"
+sleep 3
 echo "starting..."
 
 
