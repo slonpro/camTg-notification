@@ -141,11 +141,11 @@ stream_localhost off
 stream_maxrate 25
 
 on_picture_save tgbotpic.sh "$name_cam" "%f"
-on_movie_end tgbotvideo.sh "$name_cam" "%f" "\xF0\x9F\x95\x93 %H:%M:%S \xF0\x9F\x93\x85 %d.%m.%Y\n\xF0\x9F\x8E\x9E"
+on_movie_end tgbotvideo.sh "$name_cam" "%f" "\xF0\x9F\x95\x93 %H:%M:%S \xF0\x9F\x93\x85 %d.%m.%Y(№%d_%m_%Y) \n\xF0\x9F\x8E\x9E #$name_cam"
 #on_picture_save tgbot_mediapic.sh
 #on_event_end tgbot_mediapic.sh
-on_camera_lost tgbottext.sh "$name_cam" "Camera connection lost"
-on_camera_found tgbottext.sh "$name_cam" "Camera connetion established"
+on_camera_lost tgbottext.sh "$name_cam" "#$name_cam потеряла соединение #down \xE2\x9D\x8C"
+on_camera_found tgbottext.sh "$name_cam" "#$name_cam восстановила соединение #up 	\xE2\x9C\x85"
 EOF
 
 ln -s /etc/ivc-kolpak/channels/$name_cam.conf /usr/bin/
