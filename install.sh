@@ -34,26 +34,19 @@ echo "starting..."
 
 apt install imagemagick libjson-c-dev libjson-c4 motion
 
+###########################################################
 ## build motion
 #apt install autoconf automake autopoint build-essential pkgconf libtool libzip-dev libjpeg-dev git libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev libwebp-dev gettext libmicrohttpd-dev
-
 #cd ~
-
 #git clone https://github.com/Motion-Project/motion.git
-
 #cd motion
-
 #autoreconf -fiv
-
 #./configure
-
 #make
-
 #make install
-
 #cd ~
-
 #rm -rf ./motion
+###########################################################
 
 echo "ramdisk /mnt/ramdisk tmpfs rw,size=256M 0 0" >> /etc/fstab
 
@@ -67,6 +60,7 @@ ln -s /etc/ivc-kolpak/tgbot/* /usr/bin/
 
 chmod 700 /etc/ivc-kolpak/motion/
 ln -s /etc/ivc-kolpak/motion/motion.conf /usr/bin/
+ln -s /etc/ivc-kolpak/motion/motion.conf /etc/motion/
 
 ln -s /etc/ivc-kolpak/bin/libtelebot.so.0.4.5 /lib/
 
