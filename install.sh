@@ -200,3 +200,16 @@ camera /etc/ivc-kolpak/channels/$name_cam.conf
 ; camera_dir /etc/motion/conf.d
 
 EOF
+
+cat > /etc/systemd/system/motion-kool.service << EOF
+[Unit]
+Description=motion-kool
+
+[Service]
+ExecStart=motion start -c /etc/ivc-kolpak/motion/motion.conf
+EOF
+
+chmod 664 /etc/systemd/system/motion-kool.service
+
+systemctl enable motion-kool
+systemctl start motion-kool
