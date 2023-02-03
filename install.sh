@@ -136,7 +136,7 @@ movie_filename %t-%v-%Y%m%d-%H%M%S
 movie_max_time 90
 
 # The port number for the live stream.
-stream_port 49001
+stream_port 0
 stream_localhost off
 stream_maxrate 25
 
