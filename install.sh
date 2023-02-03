@@ -207,6 +207,9 @@ Description=motion-kool
 
 [Service]
 ExecStart=motion start -c /etc/ivc-kolpak/motion/motion.conf
+
+[Install]
+WantedBy=multi-user.target
 EOF
 
 chmod 664 /etc/systemd/system/motion-kool.service
