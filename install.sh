@@ -175,7 +175,7 @@ despeckle_filter EedDl
 ############################################################
 
 # Port number used for the webcontrol.
-webcontrol_port 8080
+webcontrol_port 0
 
 # Restrict webcontrol connections to the localhost.
 webcontrol_localhost on
