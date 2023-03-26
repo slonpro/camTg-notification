@@ -5,6 +5,9 @@
 echo "name_cam:"
 read name_cam
 
+echo "ubuntu or debian:"
+read system_name
+
 echo "tg_token:"
 read tg_token
 
@@ -19,6 +22,7 @@ read netcam_highres
 
 echo ""
 echo name_cam:$name_cam
+echo system_name:$system_name
 echo tg_token:$tg_token
 echo tg_id:$tg_id
 echo netcam_url:$netcam_url
@@ -62,14 +66,14 @@ chmod 700 /etc/ivc-kolpak/motion/
 ln -s /etc/ivc-kolpak/motion/motion.conf /usr/bin/
 ln -s /etc/ivc-kolpak/motion/motion.conf /etc/motion/
 
-ln -s /etc/ivc-kolpak/bin/libtelebot.so.0.4.5 /lib/
+ln -s /etc/ivc-kolpak/bin/$system_name/libtelebot.so.0.5.5 /lib/
 
-chmod 700 /etc/ivc-kolpak/bin/estgb
-ln -s /etc/ivc-kolpak/bin/estgb /usr/bin/estgb
+chmod 700 /etc/ivc-kolpak/bin/$system_name/estgb
+ln -s /etc/ivc-kolpak/bin/$system_name/estgb /usr/bin/estgb
 
 chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottext.sh,tgbotvideo.sh}
 
-chmod 700 /usr/bin/estgb
+chmod 700 /usr/bin/$system_name/estgb
 
 mkdir /etc/ivc-kolpak/channels
 chmod 700 /etc/ivc-kolpak/channels/
