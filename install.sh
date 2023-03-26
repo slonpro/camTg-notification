@@ -201,18 +201,21 @@ camera /etc/ivc-kolpak/channels/$name_cam.conf
 
 EOF
 
-cat > /etc/systemd/system/motion-kool.service << EOF
+ln -s /etc/ivc-kolpak/motion/motion.conf /usr/local/etc/motion/
+
+cat > /etc/systemd/system/ivc-kolpak.service << EOF
 [Unit]
-Description=motion-kool
+Description=ivc-kolpak
 
 [Service]
-ExecStart=motion start -c /etc/ivc-kolpak/motion/motion.conf
+ExecStart=motion start
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
-chmod 664 /etc/systemd/system/motion-kool.service
+chmod 664 /etc/systemd/system/ivc-kolpak.service
 
+systemctl daemon-reload
 systemctl enable motion-kool
 systemctl start motion-kool
