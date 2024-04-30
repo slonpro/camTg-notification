@@ -73,7 +73,7 @@ ln -s /etc/ivc-kolpak/bin/$system_name/estgb /usr/bin/estgb
 
 chmod 700 /bin/{stats.sh,tgbot.sh,tgbotaudio.sh,tgbotdoc.sh,tgbotpic.sh,tgbottext.sh,tgbotvideo.sh}
 
-chmod 700 /usr/bin/$system_name/estgb
+chmod 700 /usr/bin/estgb
 
 mkdir /etc/ivc-kolpak/channels
 chmod 700 /etc/ivc-kolpak/channels/
@@ -205,7 +205,7 @@ camera /etc/ivc-kolpak/channels/$name_cam.conf
 
 EOF
 
-ln -s /etc/ivc-kolpak/motion/motion.conf /usr/local/etc/motion/
+ln -s /etc/ivc-kolpak/motion/motion.conf /etc/motion/
 
 cat > /etc/systemd/system/ivc-kolpak.service << EOF
 [Unit]
