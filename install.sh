@@ -205,6 +205,7 @@ camera /etc/ivc-kolpak/channels/$name_cam.conf
 
 EOF
 
+rm /etc/motion/motion.conf
 ln -s /etc/ivc-kolpak/motion/motion.conf /etc/motion/
 
 cat > /etc/systemd/system/ivc-kolpak.service << EOF
